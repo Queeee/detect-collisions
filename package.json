@@ -1,5 +1,5 @@
 {
-    "name": "detect-collisions",
+    "name": "detect-collisions-v1.0",
     "types": "collisions.d.ts",
     "version": "2.5.2",
     "description": "zero-dependency 2d collision detection for circles, polygons, and points (with SAT and BVH)",
@@ -16,7 +16,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Prozi/detect-collisions.git"
+        "url": "git+https://github.com/Queeee/detect-collisions.git"
     },
     "keywords": [
         "Collision",
