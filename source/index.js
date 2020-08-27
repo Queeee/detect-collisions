@@ -26,7 +26,6 @@ class Collisions {
   _insertBody(id, body, updating = false) {
     this._bvh.insert(body, updating);
     this._id2Body.set(id, body);
-    console.log("size: " + this._id2Body.size);
   }
 
   /**
