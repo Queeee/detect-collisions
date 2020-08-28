@@ -41,7 +41,7 @@ class Collisions {
    */
   createCircle (id, x = 0, y = 0, radius = 0, updating = false, scale = 1, padding = 0) {
     const body = new Circle(x, y, radius, scale, padding)
-    this._insertBody(id, body)
+    this._insertBody(id, body, updating)
     return body
   }
 
@@ -60,7 +60,7 @@ class Collisions {
    */
   createRelativePolygon (id, x = 0, y = 0, points = [[0, 0]], updating = false, angle = 0, scale_x = 1, scale_y = 1, padding = 0) {
     const body = new Polygon(x, y, points, angle, scale_x, scale_y, padding)
-    this._insertBody(id, body)
+    this._insertBody(id, body, updating)
     return body
   }
 
@@ -115,6 +115,7 @@ class Collisions {
   remove(id, updating = fasle) {
     let body = this._id2Body.get(id);
     this._bvh.remove(body, updating);
+    return body;
   }
 
   /**
@@ -177,6 +178,7 @@ class Collisions {
   }
 };
 
+const collisions = new Collisions();
 module.exports = {
-  Collisions, BVH, Circle, Polygon, Point, Result, SAT
+  collisions, Collisions, BVH, Circle, Polygon, Point, Result, SAT
 }
