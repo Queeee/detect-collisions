@@ -177,7 +177,6 @@ class Collisions {
   }
 };
 
-const collisions = new Collisions();
 module.exports = {
-  collisions, BVH, Circle, Polygon, Point, Result, SAT
+  Collisions, BVH, Circle, Polygon, Point, Result, SAT
 }
