@@ -252,7 +252,7 @@ class Collisions {
     let targetArray = target instanceof Array ? target : [target];
     for(let i = 0; i < sourceArray.length; i++) {
       for(let j = 0; j < targetArray.length; j++) {
-        if (SAT(sourceArray[i], targetArray[i], result, aabb)) {
+        if (SAT(sourceArray[i], targetArray[j], result, aabb)) {
           return true;
         }
       }
@@ -275,6 +275,12 @@ function getCollidesIds(body) {
 
   return set;
 }
+
+const p1 = collisions.createRelativeLines(1, 829, 379, [[0, 0], [0, -1], [38, -3], [41, -5], [71, -6], [71, 13], [73, 23]]);
+const p2 = collisions.createAbsolutePolygon(2, [[851, 332], [849, 369], [856, 379], [866, 385], [882, 387], [883, 388]]);
+console.log(collisions.collides(p1, p2));
+console.log(collisions.collides(p2, p1));
+
 
 module.exports = {
   collisions, getCollidesIds, Collisions, BVH, Circle, Polygon, Point, Result, SAT
