@@ -45,13 +45,14 @@ export abstract class Body {
 export class Circle extends Body {
     /**
      * @constructor
+     * @param {String} [i = 0] unique id
      * @param {number} [x = 0] The starting X coordinate
      * @param {number} [y = 0] The starting Y coordinate
      * @param {number} [radius = 0] The radius
      * @param {number} [scale = 1] The scale
      * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
      */
-    constructor(x?: number, y?: number, radius?: number, scale?: number, padding?: number);
+    constructor(id?: string, x?: number, y?: number, radius?: number, scale?: number, padding?: number);
     radius: number;
     scale: number;
 }
@@ -86,7 +87,7 @@ export class Polygon extends Body {
  * @extends {Body}
  */
 export class Point extends Body {
-    constructor(x?: number, y?: number, padding?: number);
+    constructor(id?: string, x?: number, y?: number, padding?: number);
 }
 
 /**
@@ -115,7 +116,7 @@ export class Result {
 export class Collisions {
     /**
      * Creates a {@link Circle} and inserts it into the collision system
-     * @param {String} [i = 0] unique id
+     * @param {string} [i = 0] unique id
      * @param {number} [x = 0] The starting X coordinate
      * @param {number} [y = 0] The starting Y coordinate
      * @param {number} [radius = 0] The radius
@@ -156,6 +157,36 @@ export class Collisions {
     createAbsolutePolygon(id: string, points?: number[][], updating?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
 
     /**
+     * Create lines
+     * 
+     * @param {string} [i = 0] unique id
+     * @param {number} [x = 0] The starting X coordinate
+     * @param {number} [y = 0] The starting Y coordinate
+     * @param {number[][]} [points = []] An array of coordinate pairs making up the polygon - [[x1, y1], [x2, y2], ...]
+     * @param {boolean} [updating = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
+     * @param {number} [angle = 0] The starting rotation in radians
+     * @param {number} [scale_x = 1] The starting scale along the X axis
+     * @param {number} [scale_y = 1] The starting scale long the Y axis
+     * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
+     * @returns {Polygon}
+     */
+    createRelativeLines(id: string, x?: number, y?: number, points?: number[][], updating?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
+
+    /**
+     * create lines
+     * 
+     * @param {string} [i = 0] unique id
+     * @param {number[][]} [points = []] An array of coordinate pairs making up the polygon - [[x1, y1], [x2, y2], ...]
+     * @param {boolean} [updating = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
+     * @param {number} [angle = 0] The starting rotation in radians
+     * @param {number} [scale_x = 1] The starting scale along the X axis
+     * @param {number} [scale_y = 1] The starting scale long the Y axis
+     * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
+     * @returns {Polygon}
+     */
+    createAbsoluteLines(id: string, points?: number[][], updating?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
+
+    /**
      * Creates a {@link Point} and inserts it into the collision system
      * @param {number} [x = 0] The starting X coordinate
      * @param {number} [y = 0] The starting Y coordinate
@@ -175,10 +206,9 @@ export class Collisions {
    * 删除id对的body
    * 
    * @param {String} id 
-   * @param {Boolean} updating 
    * @returns {Collisions}
    */
-    remove(id: string, updating?: boolean): Collisions;
+    remove(id: string): Collisions;
 
     /**
      * Updates the collision system. This should be called before any collisions are tested.
@@ -217,3 +247,4 @@ export class Collisions {
 }
 
 export const collisions: Collisions
+export const getCollidesIds: Function
