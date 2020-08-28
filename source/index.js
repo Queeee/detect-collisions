@@ -24,6 +24,11 @@ class Collisions {
    * @param {Boolean} [updating = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
    */
   _insertBody(id, body, updating = false) {
+    if(this._id2Body.has(id)) {
+      let body = this._id2Body.get(id);
+      this._bvh.remove(body, updating);
+    }
+
     this._bvh.insert(body, updating);
     this._id2Body.set(id, body);
   }
