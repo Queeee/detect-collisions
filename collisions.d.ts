@@ -119,12 +119,13 @@ export class Collisions {
      * @param {string} [i = 0] unique id
      * @param {number} [x = 0] The starting X coordinate
      * @param {number} [y = 0] The starting Y coordinate
+     * @param {boolean} [enable_cache = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
      * @param {number} [radius = 0] The radius
      * @param {number} [scale = 1] The scale
      * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
      * @returns {Circle}
      */
-    createCircle(id: string, x?: number, y?: number, radius?: number, scale?: number, padding?: number): Circle;
+    createCircle(id: string, x?: number, y?: number, enable_cache?: boolean, radius?: number, scale?: number, padding?: number): Circle;
 
     /**
      * Creates a {@link Polygon} and inserts it into the collision system
@@ -133,28 +134,28 @@ export class Collisions {
      * @param {number} [x = 0] The starting X coordinate
      * @param {number} [y = 0] The starting Y coordinate
      * @param {number[][]} [points = []] An array of coordinate pairs making up the polygon - [[x1, y1], [x2, y2], ...]
-     * @param {boolean} [updating = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
+     * @param {boolean} [enable_cache = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
      * @param {number} [angle = 0] The starting rotation in radians
      * @param {number} [scale_x = 1] The starting scale along the X axis
      * @param {number} [scale_y = 1] The starting scale long the Y axis
      * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
      * @returns {Polygon}
      */
-    createRelativePolygon(id: string, x?: number, y?: number, points?: number[][], updating?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
+    createRelativePolygon(id: string, x?: number, y?: number, points?: number[][], enable_cache?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
 
     /**
      * Creates a {@link Polygon} and inserts it into the collision system
      * 
      * @param {string} [i = 0] unique id
      * @param {number[][]} [points = []] An array of coordinate pairs making up the polygon - [[x1, y1], [x2, y2], ...]
-     * @param {boolean} [updating = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
+     * @param {boolean} [enable_cache = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
      * @param {number} [angle = 0] The starting rotation in radians
      * @param {number} [scale_x = 1] The starting scale along the X axis
      * @param {number} [scale_y = 1] The starting scale long the Y axis
      * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
      * @returns {Polygon}
      */
-    createAbsolutePolygon(id: string, points?: number[][], updating?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
+    createAbsolutePolygon(id: string, points?: number[][], enable_cache?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
 
     /**
      * Create lines
@@ -163,38 +164,38 @@ export class Collisions {
      * @param {number} [x = 0] The starting X coordinate
      * @param {number} [y = 0] The starting Y coordinate
      * @param {number[][]} [points = []] An array of coordinate pairs making up the polygon - [[x1, y1], [x2, y2], ...]
-     * @param {boolean} [updating = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
+     * @param {boolean} [enable_cache = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
      * @param {number} [angle = 0] The starting rotation in radians
      * @param {number} [scale_x = 1] The starting scale along the X axis
      * @param {number} [scale_y = 1] The starting scale long the Y axis
      * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
      * @returns {Polygon}
      */
-    createRelativeLines(id: string, x?: number, y?: number, points?: number[][], updating?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
+    createRelativeLines(id: string, x?: number, y?: number, points?: number[][], enable_cache?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
 
     /**
      * create lines
      * 
      * @param {string} [i = 0] unique id
      * @param {number[][]} [points = []] An array of coordinate pairs making up the polygon - [[x1, y1], [x2, y2], ...]
-     * @param {boolean} [updating = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
+     * @param {boolean} [enable_cache = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
      * @param {number} [angle = 0] The starting rotation in radians
      * @param {number} [scale_x = 1] The starting scale along the X axis
      * @param {number} [scale_y = 1] The starting scale long the Y axis
      * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
      * @returns {Polygon}
      */
-    createAbsoluteLines(id: string, points?: number[][], updating?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
+    createAbsoluteLines(id: string, points?: number[][], enable_cache?: boolean, angle?: number, scale_x?: number, scale_y?: number, padding?: number): Polygon;
 
     /**
      * Creates a {@link Point} and inserts it into the collision system
      * @param {number} [x = 0] The starting X coordinate
      * @param {number} [y = 0] The starting Y coordinate
-     * @param {boolean} [updating = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
+     * @param {boolean} [enable_cache = false] Set to true if the body already exists in the BVH (used internally when updating the body's position)
      * @param {number} [padding = 0] The amount to pad the bounding volume when testing for potential collisions
      * @returns {Point}
      */
-    createPoint(id: string, x?: number, y?: number, updating?: boolean, padding?: number): Point;
+    createPoint(id: string, x?: number, y?: number, enable_cache?: boolean, padding?: number): Point;
 
     /**
      * Creates a {@link Result} used to collect the detailed results of a collision test
