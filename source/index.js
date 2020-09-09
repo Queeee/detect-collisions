@@ -135,6 +135,12 @@ class Collisions {
    * @returns {Polygon}
    */
   createRelativeLines (id, x = 0, y = 0, points = [[0, 0]], enable_cache = false, angle = 0, scale_x = 1, scale_y = 1, padding = 0) {
+    // 这里如果points的长度为1，说明是一个点
+    if(points.length == 1) {      
+      const point = new Point(x + points[0][0], y + points[0][1]);
+      return point;
+    }
+
     let lines = new Array();
     for(let i = 1; i < points.length; i++) {
       let tempPoints = [points[i], points[i - 1]];
@@ -275,12 +281,6 @@ function getCollidesIds(body) {
 
   return set;
 }
-
-const p1 = collisions.createRelativeLines(1, 829, 379, [[0, 0], [0, -1], [38, -3], [41, -5], [71, -6], [71, 13], [73, 23]]);
-const p2 = collisions.createAbsolutePolygon(2, [[851, 332], [849, 369], [856, 379], [866, 385], [882, 387], [883, 388]]);
-console.log(collisions.collides(p1, p2));
-console.log(collisions.collides(p2, p1));
-
 
 module.exports = {
   collisions, getCollidesIds, Collisions, BVH, Circle, Polygon, Point, Result, SAT
